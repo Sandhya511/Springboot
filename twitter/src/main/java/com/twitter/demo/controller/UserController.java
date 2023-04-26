@@ -39,11 +39,16 @@ public class UserController {
 	
 	@DeleteMapping(value="/deleteuser/{id}")
 	
-		public void deleteUser(@PathVariable("id")int twId )
-		{
-			userServ.deleteUser(twId) ;
-		}
+	public void deleteUser(@PathVariable("id")int twId )
+	{
+		userServ.deleteUser(twId) ;
+	}
 	
+	@GetMapping("/sortuser/{field}")
+	public List<User> sortUser(@PathVariable String field)
+	{
+		return userServ.sortUser(field) ;
+	}
 	
 
 }

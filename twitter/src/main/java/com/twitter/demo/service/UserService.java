@@ -3,6 +3,7 @@ package com.twitter.demo.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.twitter.demo.model.User;
@@ -31,6 +32,11 @@ public class UserService {
 
 	public void deleteUser(int twId) {
 		userRep.deleteById(twId);
+		
+	}
+
+	public List<User> sortUser(String field) {
+		return userRep.findAll(Sort.by(field));
 		
 	}
 
