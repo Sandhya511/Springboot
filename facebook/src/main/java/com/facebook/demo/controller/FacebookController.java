@@ -40,6 +40,17 @@ public class FacebookController {
 	{
 		fServ.delete(fid);
 	}
+	@PutMapping(value="/updatef")
+	public Facebook updatef(@RequestBody Facebook m,int id)
+	{
+		return fServ.updatef(m,id);
+	}
+	
+	@GetMapping("pagef/{offset}/{pagesize}/")
+	public List<Facebook> paging(@PathVariable int offset,@PathVariable int pagesize)
+	{
+		return fServ.paging(offset,pagesize) ;
+	}
 	
 
 }
