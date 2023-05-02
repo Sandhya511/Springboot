@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.supermarket.demo.model.Supermarket;
 import com.supermarket.demo.service.SuperMarketService;
 
+import jakarta.websocket.server.PathParam;
+
 @RestController
 public class SuperMarketController {
 	@Autowired
@@ -63,40 +65,42 @@ public class SuperMarketController {
 		return smServ.pagingsort(offset,size,field) ;
 	}
 	
+	
+	
 	//query
 	//http://localhost:8080/fetchStudentsByDepartment/ECE/Minu
-//	@GetMapping("/fetchprodybrand/{brand}/{name}")
-//	public List<Supermarket> getprodByBrand(@PathVariable String brand,@PathVariable String name)
-//	{
-//		return smServ.getprodByBrand(brand,name);
-//	}
-//	@DeleteMapping("/deletebyname")
-//	public String deleteProdByName(String name)
-//	{
-//		int result = smServ.deleteProdByName(name) ;
-//		if(result>0)
-//			return "product deleted" ;
-//		else
-//			return "problem occured while deleting" ;
-//		
-//	}
+	@GetMapping("/fetchprodbybrand/{brand}/{name}")
+	public List<Supermarket> getProdByBrand(@PathVariable String brand,@PathVariable String name)
+	{
+		return smServ.getProdByBrand(brand,name);
+	}
+	@DeleteMapping("/deletebyname/{name}")
+	public String deleteProdByName(@PathVariable  String name)
+	{
+		int result = smServ.deleteProdByName(name) ;
+		if(result>0)
+			return "product deleted" ;
+		else
+			return "problem occured while deleting" ;
+		
+	}
 	
-//	@PutMapping("/updatebyname/{brand}/{name}")
-//	public String updateProdByName(String brand,String name)
-//	{
-//		int res = smServ.updateProdByName(brand,name) ;
-//		System.out.println("result="+res);
-//		if (res>0)
-//			return "Product updated" ;
-//		else
-//			return "Product update failed" ;
-//	}
-//	@GetMapping("/fetchbybrand")
-//	public List<Supermarket> fetchBrand(String brand)
-//	{
-//		return smServ.fetchBrand(brand) ;
-//	
-//	}
+	@PutMapping("/updatebyname/{brand}/{name}")
+	public String updateProdByName(@PathVariable String brand,@PathVariable String name)
+	{
+		int res = smServ.updateProdByName(brand,name) ;
+		//System.out.println("result="+res);
+		if (res>0)
+			return "Product updated" ;
+		else
+			return "Product update failed" ;
+	}
+	@GetMapping("/fetchbybrand/{brand}")
+	public List<Supermarket> fetchBrand(@PathVariable String brand)
+	{
+		return smServ.fetchBrand(brand) ;
+	
+	}
 	
 
 }

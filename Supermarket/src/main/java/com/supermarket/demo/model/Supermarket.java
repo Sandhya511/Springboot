@@ -90,5 +90,7 @@ public class Supermarket {
 	private int quantity ;
 	private String date ;
 	private int shopId ;
+	
+	
 
 }

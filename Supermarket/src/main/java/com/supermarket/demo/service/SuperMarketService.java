@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import com.supermarket.demo.model.Supermarket;
 import com.supermarket.demo.repository.SuperMarketRepository;
 
+import jakarta.transaction.Transactional;
+
 //import jakarta.transaction.Transactional;
 @Service
 public class SuperMarketService {
@@ -52,24 +54,20 @@ public class SuperMarketService {
 		return smRep.findAll(Sort.by(Direction.DESC, field)) ;
 	}
 	
-//	@Transactional
-//	public int deleteProdByName(String name) {
-//		return smRep.deleteProdByName(name);
-//	}
-//	@Transactional
-//	public int updateProdByName(String brand, String name) {
-//		return smRep.updateProdByName(brand, name);
-//		
-//	}
-//
-//	public List<Supermarket> getprodByBrand(String brand, String name) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
+	public List<Supermarket> getProdByBrand(String brand, String name) {
+		return smRep.getProdByBrand(brand,name);
+	}
+	@Transactional
+	public int deleteProdByName(String name) {
+		return smRep.deleteProdByName(name);
+	}
+	@Transactional
+	public int updateProdByName(String brand, String name) {
+		return smRep.updateProdByName(brand, name);
+		
+	}
 
-//	public List<Supermarket> fetchBrand(String brand) {
-//		return smRep.fetchByBrand(brand) ;
-//	}
-//		
-
+	public List<Supermarket> fetchBrand(String brand) {
+		return smRep.fetchByBrand(brand) ;
+	}
 }
