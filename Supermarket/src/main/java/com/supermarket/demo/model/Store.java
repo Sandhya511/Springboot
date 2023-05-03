@@ -43,6 +43,10 @@ public class Store {
 	public void setPincode(int pincode) {
 		this.pincode = pincode;
 	}
+	@Override
+	public String toString() {
+		return String.format("Store [id=%s, name=%s, street=%s, city=%s, pincode=%s]", id, name, street, city, pincode);
+	}
 	
 
 }

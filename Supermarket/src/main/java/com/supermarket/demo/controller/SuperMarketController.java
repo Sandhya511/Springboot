@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.supermarket.demo.model.Supermarket;
 import com.supermarket.demo.service.SuperMarketService;
 
-import jakarta.websocket.server.PathParam;
-
 @RestController
 public class SuperMarketController {
 	@Autowired
@@ -74,6 +72,7 @@ public class SuperMarketController {
 	{
 		return smServ.getProdByBrand(brand,name);
 	}
+	
 	@DeleteMapping("/deletebyname/{name}")
 	public String deleteProdByName(@PathVariable  String name)
 	{
