@@ -10,16 +10,21 @@ import org.springframework.web.bind.annotation.RestController;
 import com.supermarket.demo.model.Delivery;
 import com.supermarket.demo.service.DeliveryService;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
 public class DeliveryController {
 	@Autowired
 	DeliveryService dServ ;
+	
+	@Tag(name = "Fetch all the Markets")
 	@GetMapping("/fetchallmarket")
 	public List<Delivery>fetchAllMarket()
 	{
 		return dServ.fetchAllMarket();
 	}
 	
+	@Tag(name = "Save Market")
 	@PostMapping("/saveMarket")
 	public Delivery saveMarket(Delivery d)
 	{

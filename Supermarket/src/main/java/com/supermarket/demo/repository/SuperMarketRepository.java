@@ -16,30 +16,34 @@ public interface SuperMarketRepository extends JpaRepository<Supermarket,Integer
 
 	
 	
-	//positional parameter -> ?order match
+	//positional parameter - order should match ; indexes of the table
 	@Query("select s from Supermarket s where s.brand=?1 and s.name=?2")
 	 public List<Supermarket> getProdByBrand(String brand,String name);
 	
-	//named parameter -> just name
-//	@Query("select s from Player s where s.team=:team")
-//	 public List<Supermarket> getProdByBrand(String brand);
-	List<Supermarket> findByNameStartingWith(String prefix) ;
-	List<Supermarket> findByNameEndingWith(String suffix) ;
-
+	//named parameter - access the attribute by name
+	@Query("select s from Supermarket s where s.brand=:brand")
+	 public List<Supermarket> getProdByBrand(String brand);
 	
-	//DML
-	@Modifying
-	@Query("delete from Supermarket s where s.name=?1")
-	public int deleteProdByName(String name);
+	//JPA derived queries
+	  List<Supermarket> findByNameStartingWith(String prefix) ;
+	  List<Supermarket> findByNameEndingWith(String suffix) ;
+	  List<Supermarket> findByBrand(String brand) ;
 	
+	//DML 
+	//insert ,update , delete
+	  
+	 @Modifying
+	 @Query("update Supermarket s set s.brand=?1 where s.name=?2")
+	 public int updateProdByName(String brand,String name) ;
 	
-	@Modifying
-	@Query("update Supermarket s set s.brand=?1 where s.name=?2")
-	public int updateProdByName(String brand,String name) ;
+	 @Modifying
+	 @Query("delete from Supermarket s where s.name=?1")
+	 public int deleteProdByName(String name);
+	 
+	 //native query
 	
-	
-	@Query(value = "select * from Supermarket s where s.brand=?1",nativeQuery=true)
-	public List<Supermarket> fetchByBrand(String brand) ;
+	 @Query(value = "select * from Supermarket s where s.brand=?1",nativeQuery=true)
+	 public List<Supermarket> fetchByBrand(String brand) ;
 
 	
 

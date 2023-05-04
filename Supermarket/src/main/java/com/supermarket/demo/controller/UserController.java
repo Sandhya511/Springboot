@@ -14,12 +14,15 @@ import org.springframework.web.bind.annotation.RestController;
 import com.supermarket.demo.model.User;
 import com.supermarket.demo.service.UserService;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
 
 public class UserController {
 	@Autowired
 	 UserService userServ ;
 	
+	@Tag(name = "User Login")
 	@PostMapping("/login")
 	public String login(@RequestBody Map<String,String>loginData)
 	{
@@ -29,18 +32,21 @@ public class UserController {
 		return result ;
 	}
 	
+	@Tag(name = "Add User")
 	@PostMapping("/adduser")
 	public User addUser(@RequestBody User m)
 	{
 		return userServ.addUser(m) ;
 	}
 	
+	@Tag(name = "User Details")
 	@GetMapping("/add")
 	public List<User> listAll()
 	{
 		return userServ.getUser() ;
 	}
 	
+	@Tag(name = "Update User")
 	@PutMapping(value="/put/{id}")
 	public User updateUser(@RequestBody User us,@PathVariable int id)
 	{
