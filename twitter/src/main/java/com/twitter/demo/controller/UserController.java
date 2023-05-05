@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.twitter.demo.model.User;
@@ -43,11 +44,23 @@ public class UserController {
 	{
 		userServ.deleteUser(twId) ;
 	}
+//	
+//	@GetMapping("/sortuser/{field}")
+//	public List<User> sortUser(@PathVariable String field)
+//	{
+//		return userServ.sortUser(field) ;
+//	}
 	
-	@GetMapping("/sortuser/{field}")
-	public List<User> sortUser(@PathVariable String field)
+	@GetMapping("/sortuser")
+	public List<User> sortp(@RequestParam String field)
 	{
-		return userServ.sortUser(field) ;
+		return userServ.sortp(field) ;
+	}
+	
+	@GetMapping("/paging/{offset}/{size}")
+	public List<User> pager(@PathVariable int offset,@PathVariable int size)
+	{
+		return userServ.pager(offset,size) ;
 	}
 	
 
