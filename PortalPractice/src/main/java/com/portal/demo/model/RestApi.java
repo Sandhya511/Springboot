@@ -1,4 +1,4 @@
-package com.portal.demo.restapi.model;
+package com.portal.demo.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;

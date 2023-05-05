@@ -1,4 +1,4 @@
-package com.portal.demo.restapi.controller;
+package com.portal.demo.controller;
 
 import java.util.List;
 
@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.portal.demo.restapi.model.RestApi;
-import com.portal.demo.restapi.service.RestApiService;
+import com.portal.demo.model.RestApi;
+import com.portal.demo.service.RestApiService;
 
 
 @RestController
