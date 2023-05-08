@@ -1,6 +1,7 @@
 package com.portal.demo.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -29,9 +30,9 @@ public class BookController {
 		
 	}
 	@GetMapping("/book/{bookId}")
-	public List <Book> getById(@PathVariable int bookId)
+	public Optional<Book> getById(@PathVariable int bookId)
 	{
-		List<Book> j = bServ.getById(bookId) ;
+		Optional<Book> j = bServ.getById(bookId) ;
 		return j ;
 	}
 	
