@@ -1,14 +1,24 @@
 package com.supermarket.demo.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
 @Entity
 public class User {
 	@Id
+	@GeneratedValue
 	private int id ;
+	private String email ;
 	private String uname ;
 	private String pwd ;
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
 	public int getId() {
 		return id;
 	}

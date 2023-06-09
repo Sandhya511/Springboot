@@ -1,8 +1,10 @@
 package com.supermarket.demo.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,8 +20,7 @@ import com.supermarket.demo.service.SuperMarketService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 
-
-
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class SuperMarketController {
 	@Autowired
@@ -45,11 +46,18 @@ public class SuperMarketController {
 		return smServ.saveSM(s) ;
 	}
 	
-	@Tag(name = "Update Supermarket Details")
-	@PutMapping(value="/updatedata")
-	public Supermarket updateSM(@RequestBody Supermarket m)
+	@GetMapping(value = "getproduct/{pId}")
+	public Optional<Supermarket> get(@PathVariable int pId)
 	{
-		return smServ.saveSM(m) ;
+		return smServ.get(pId);
+	}
+	
+	
+	@Tag(name = "Update Supermarket Details")
+	@PutMapping(value="/updatedata/{pId}")
+	public Supermarket updateSM(@RequestBody Supermarket m,@PathVariable int pId)
+	{
+		return smServ.updateSM(m,pId) ;
 	}
 	
 	@Tag(name = "Delete Supermarket Details for a give ID")

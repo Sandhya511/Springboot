@@ -1,6 +1,7 @@
 package com.supermarket.demo.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -30,10 +31,20 @@ public class SuperMarketService {
 		return smRep.save(s);
 	}
 
-	public Supermarket updateSM(Supermarket m) {
-		return smRep.save(m);	
+//	public Supermarket updateSM(Supermarket m,int pId) {
+//		return smRep.save(m);	
+//	}
+	public Supermarket updateSM(Supermarket m,int pId)
+	{
+		Optional<Supermarket> optional = smRep.findById(pId);
+		Supermarket obj = null;
+		if(optional.isPresent())
+		{
+			obj=optional.get();
+			smRep.saveAndFlush(m);
+		}
+		return obj;
 	}
-	
 	public void deleteSM(int pId) {
 		smRep.deleteById(pId);	
 	}
@@ -84,5 +95,11 @@ public class SuperMarketService {
 		return smRep.updateProdByName(brand, name);
 		
 	}
+
+	public Optional<Supermarket> get(int pId) {
+		
+		return smRep.findById(pId);
+	}
+
 
 }
